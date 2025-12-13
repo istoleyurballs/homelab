@@ -21,10 +21,10 @@ resources:
 images:
   - name: immich-server
     newName: ghcr.io/immich-app/immich-server
-    newTag: v2.2.1
+    newTag: v2.3.1
   - name: immich-machine-learning
     newName: ghcr.io/immich-app/immich-machine-learning
-    newTag: v2.2.1
+    newTag: v2.3.1
   - name: redis
     newName: docker.io/valkey/valkey
     newTag: 8@sha256:81db6d39e1bba3b3ff32bd3a1b19a6d69690f94a3954ec131277b9a26b95b3aa
