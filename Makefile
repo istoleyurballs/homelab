@@ -19,13 +19,21 @@ up:
 
 .PHONY: down
 down:
-	kubectl delete -k silverbullet
-	kubectl delete -k immich
-	kubectl delete -k paperless
-	kubectl delete -k jellyfin
-	kubectl delete -k mealie
-	kubectl delete -k monitoring
-	kubectl delete -k auth
-	kubectl delete -k redirects
-	kubectl delete -k cert-manager-issuers
-	kubectl delete -k charts
+	@echo "Really ???"
+
+.PHONY: down-like-for-real-i-know-what-i-am-doing
+down-like-for-real-i-know-what-i-am-doing:
+	@echo "Know you this will delete like everything ?"
+
+.PHONY: down-like-for-real-i-know-what-i-am-doing-not-a-type
+down-like-for-real-i-know-what-i-am-doing-not-a-type:
+	kubectl delete -k silverbullet --interactive
+	kubectl delete -k immich --interactive
+	kubectl delete -k paperless --interactive
+	kubectl delete -k jellyfin --interactive
+	kubectl delete -k mealie --interactive
+	kubectl delete -k monitoring --interactive
+	kubectl delete -k auth --interactive
+	kubectl delete -k redirects --interactive
+	kubectl delete -k cert-manager-issuers --interactive
+	kubectl delete -k charts --interactive
