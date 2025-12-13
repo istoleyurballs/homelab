@@ -23,4 +23,4 @@ resources:
 images:
   - name: silverbullet
     newName: ghcr.io/silverbulletmd/silverbullet
-    newTag: 2.2.1
+    newTag: 2.3.0
