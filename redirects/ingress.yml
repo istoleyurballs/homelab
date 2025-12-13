@@ -4,7 +4,8 @@ kind: Ingress
 metadata:
   name: enorme-uk-to-github
   annotations:
-    nginx.ingress.kubernetes.io/permanent-redirect: 'https://github.com/icanwalkonwater'
+    cert-manager.io/cluster-issuer: letsencrypt
+    nginx.ingress.kubernetes.io/permanent-redirect: 'https://github.com/istoleyurballs'
 spec:
   ingressClassName: nginx
   rules:
