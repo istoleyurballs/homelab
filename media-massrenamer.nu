@@ -88,7 +88,7 @@ def "main season" [
     | where name =~ $keep_filter
     | get name
     | each {parse-season-item $in --season=$season --prefix=$media --offset-ep=$offset_ep}
-    | sort-by ep
+    | sort-by --natural ep
 
   let data = {
     media: $media
@@ -108,7 +108,7 @@ def "main season" [
 
   print ($items
     | where {$in.filename != $in.target_file_name}
-    | each {$"(if $mv { 'mv' } else { 'ln' }) '($in.filename | str replace "\'" "'\\''")' '($in.target_file_name)'"} | str join "\n"
+    | each {$"(if $mv { 'mv' } else { 'ln' }) '($in.filename | str replace "\'" "\\'")' '($in.target_file_name)'"} | str join "\n"
   )
 }
 
@@ -311,17 +311,17 @@ def parse-ep [season: int, --offset-ep: int = 0]: string -> string {
   let file = $in
   $file
     | path basename
-    | parse --regex '(?:[^a-zA-Z0-9][sS]|[^0-9])(?<s>\d{1,2})[^0-9]?[eEx](?<e>\d{1,2})[^a-zA-Z0-9]'
+    | parse --regex '(?:[^a-zA-Z0-9][sS]|[^0-9])(?<s>\d{1,2})[^0-9]?[eEx](?<e>\d{1,3})[^a-zA-Z0-9]'
     | get -o 0
     | default {
       print "WARN: Using degraded ep parser"
 
       let fallback_e = $file
         | path basename
-        | parse --regex '[^a-zA-Z][eE](?<e>\d{1,2})[^0-9]'
+        | parse --regex '[^a-zA-Z][eE](?<e>\d{1,3})[^0-9]'
         | get -o 0.e
-        | default {$file | path basename | parse --regex '(?:[^0-9](?<e>\d{2})[^0-9])' | get -o 0.e}
-        | default {$file | path basename | parse --regex '(?<e>[0-9]{2})[^0-9]' | get 0.e}
+        | default {$file | path basename | parse --regex '(?:[^0-9](?<e>\d{2,3})[^0-9])' | get -o 0.e}
+        | default {$file | path basename | parse --regex '(?<e>[0-9]{2,3})[^0-9]' | get 0.e}
 
       { s: $season, e: $fallback_e }
     }
