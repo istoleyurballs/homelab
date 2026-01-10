@@ -43,7 +43,7 @@ def "main single" [
   let target_dir = $"($target_base_dir)/($data.target_dir_name)"
 
   print $"mkdir -p '($target_dir)'"
-  print $"(if $mv { 'mv' } else { 'ln' }) '($file)' '($target_dir)/($data.target_file_name)'"
+  print $"(if $mv { 'mv' } else { 'ln' }) '($file | str replace "\'" "\\'")' '($target_dir)/($data.target_file_name)'"
 }
 
 def "main season" [
