@@ -35,5 +35,5 @@ Overview of the main components:
 
 Apps installed:
 - `mealie`: cooking recipes database.
+- `minecraft-gtnh`: a Minecraft server with the GregTech: New Horizons modpack.
 - (NOT WORKING) `octoprint`:  for managing my 3D printer remotely.
-- (NOT WORKING) `minecraft-gtnh`: a GregTech: New Horizons minecraft modded server.

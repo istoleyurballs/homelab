@@ -1,30 +1,51 @@
 ---
-apiVersion: storage.k8s.io/v1
-kind: StorageClass
+apiVersion: v1
+kind: PersistentVolume
 metadata:
-  name: minecraft-data
-provisioner: kubernetes.io/no-provisioner
-volumeBindingMode: WaitForFirstConsumer
+  name: minecraft-world-pv
+spec:
+  local:
+    path: '/mnt/rootfs/@minecraft/gtnh-2026-world'
+  capacity: { storage: 20Gi }
+  accessModes: [ReadWriteOncePod]
+  storageClassName: ''
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+        - matchExpressions: [{ key: kubernetes.io/hostname, operator: In, values: [coruscant] }]
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: minecraft-world-pvc
+spec:
+  volumeName: minecraft-world-pv
+  storageClassName: ''
+  accessModes: [ReadWriteOncePod]
+  resources: { requests: { storage: 20Gi } }
+
 ---
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: minecraft-data
-  labels:
-    app.kubernetes.io/name: minecraft-data
+  name: minecraft-backups-pv
 spec:
-  capacity:
-    storage: 50Gi
-  volumeMode: Filesystem
-  accessModes: [ReadWriteOncePod]
-  storageClassName: minecraft-data
-  persistentVolumeReclaimPolicy: Retain
   local:
-    path: '/mnt/rootfs/@minecraft'
+    path: '/mnt/lucastrunk/@minecraft/backups/gtnh-2026'
+  capacity: { storage: 100Gi }
+  accessModes: [ReadWriteOncePod]
+  storageClassName: ''
   nodeAffinity:
     required:
       nodeSelectorTerms:
-        - matchExpressions:
-            - key: kubernetes.io/hostname
-              operator: In
-              values: [coruscant]
+        - matchExpressions: [{ key: kubernetes.io/hostname, operator: In, values: [coruscant] }]
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: minecraft-backups-pvc
+spec:
+  volumeName: minecraft-backups-pv
+  storageClassName: ''
+  accessModes: [ReadWriteOncePod]
+  resources: { requests: { storage: 100Gi } }

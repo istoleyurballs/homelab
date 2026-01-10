@@ -16,6 +16,7 @@ up:
 	kubectl apply -k paperless
 	kubectl apply -k immich
 	kubectl apply -k silverbullet
+	kubectl apply -k minecraft-gtnh
 
 .PHONY: down
 down:
@@ -27,6 +28,7 @@ down-like-for-real-i-know-what-i-am-doing:
 
 .PHONY: down-like-for-real-i-know-what-i-am-doing-not-a-type
 down-like-for-real-i-know-what-i-am-doing-not-a-type:
+	kubectl delete -k minecraft-gtnh
 	kubectl delete -k silverbullet --interactive
 	kubectl delete -k immich --interactive
 	kubectl delete -k paperless --interactive

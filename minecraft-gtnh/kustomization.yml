@@ -2,10 +2,21 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
+labels:
+  - pairs:
+      app.kubernetes.io/name: minecraft-gtnh
+    includeTemplates: true
+    includeSelectors: true
+  - pairs:
+      app.kubernetes.io/part-of: minecraft-gtnh
+      app.kubernetes.io/managed-by: kustomize
+    includeTemplates: true
+
 namespace: minecraft-gtnh
 resources:
+  - namespace.yml
   - pv.yml
-  - statefulset.yml
+  - deployment.yml
   - service.yml
 
 configMapGenerator:
@@ -16,5 +27,5 @@ configMapGenerator:
 
 images:
   - name: minecraft-gtnh
-    newName: ghcr.io/icanwalkonwater/minecraft-gtnh
-    newTag: 2.7.4-java21-rev1
+    newName: ghcr.io/istoleyurballs/minecraft-gtnh
+    newTag: 2.8.4-java25-rev1
