@@ -28,4 +28,4 @@ configMapGenerator:
 images:
   - name: minecraft-gtnh
     newName: ghcr.io/istoleyurballs/minecraft-gtnh
-    newTag: 2.8.4-java25-rev9
+    newTag: 2.8.4-java25-rev10

@@ -2,10 +2,10 @@
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: minecraft-world-pv
+  name: minecraft-data-pv
 spec:
   local:
-    path: '/mnt/rootfs/@minecraft/gtnh-2026-world'
+    path: '/mnt/rootfs/@minecraft/gtnh-2026-data'
   capacity: { storage: 20Gi }
   accessModes: [ReadWriteOncePod]
   storageClassName: ''
@@ -17,9 +17,9 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: minecraft-world-pvc
+  name: minecraft-data-pvc
 spec:
-  volumeName: minecraft-world-pv
+  volumeName: minecraft-data-pv
   storageClassName: ''
   accessModes: [ReadWriteOncePod]
   resources: { requests: { storage: 20Gi } }
