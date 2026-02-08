@@ -43,7 +43,9 @@ def "main single" [
   let target_dir = $"($target_base_dir)/($data.target_dir_name)"
 
   print $"mkdir -p '($target_dir)'"
-  print $"(if $mv { 'mv' } else { 'ln' }) '($file | str replace "\'" "\\'")' '($target_dir)/($data.target_file_name)'"
+  let src = $file | str replace --all "\"" "\\\""
+  let target = $"($target_dir)/($data.target_file_name)"
+  print $"(if $mv { 'mv' } else { 'ln' }) \"($src)\" '($target)'"
 }
 
 def "main season" [
@@ -108,7 +110,7 @@ def "main season" [
 
   print ($items
     | where {$in.filename != $in.target_file_name}
-    | each {$"(if $mv { 'mv' } else { 'ln' }) '($in.filename | str replace "\'" "\\'")' '($in.target_file_name)'"} | str join "\n"
+    | each {$"(if $mv { 'mv' } else { 'ln' }) \"($in.filename | str replace --all '\"' '\"')\" '($in.target_file_name)'"} | str join "\n"
   )
 }
 
