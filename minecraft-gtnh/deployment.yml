@@ -20,6 +20,7 @@ spec:
             - { name: DIFFICULTY, value: '2' }
             - { name: VIEW_DISTANCE, value: '32' }
             - { name: MOTD, value: 'Autism land' }
+            - { name: MAX_TICK_TIME, value: '-1' }
           ports:
             - { name: minecraft, containerPort: 25565 }
           volumeMounts:
