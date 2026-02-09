@@ -16,7 +16,7 @@ resources:
 images:
   - name: jellyfin
     newName: ghcr.io/jellyfin/jellyfin
-    newTag: 10.11.4
+    newTag: 10.11.6
   - name: json-exporter
     newName: quay.io/prometheuscommunity/json-exporter
     newTag: v0.7.0
