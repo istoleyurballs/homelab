@@ -21,7 +21,7 @@ resources:
 images:
   - name: grafana
     newName: docker.io/grafana/grafana-oss
-    newTag: 12.2.0-17142428006
+    newTag: 12.3.2
   - name: prometheus
     newName: docker.io/prom/prometheus
     newTag: v3.9.1
