@@ -1,0 +1,23 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: vaultwarden
+  # annotations:
+  #   nginx.ingress.kubernetes.io/auth-method: 'GET'
+  #   nginx.ingress.kubernetes.io/auth-url: 'http://authelia.auth.svc.cluster.local:9091/api/authz/auth-request'
+  #   nginx.ingress.kubernetes.io/auth-signin: 'https://identifie.mon.enorme.uk?rm=$request_method'
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: leak.mon.enorme.uk
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service: { name: vaultwarden, port: { name: http } }
+  tls:
+  # use default certificate
+  - hosts:
+    - '*.mon.enorme.uk'

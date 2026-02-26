@@ -1,0 +1,26 @@
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+labels:
+  - pairs:
+      app.kubernetes.io/name: vaultwarden
+    includeTemplates: true
+    includeSelectors: true
+  - pairs:
+      app.kubernetes.io/part-of: vaultwarden
+      app.kubernetes.io/managed-by: kustomize
+    includeTemplates: true
+
+namespace: vaultwarden
+resources:
+  - namespace.yml
+  - deployment.yml
+  - service.yml
+  - ingress.yml
+  - pv.yml
+
+images:
+  - name: vaultwarden
+    newName: ghcr.io/dani-garcia/vaultwarden
+    newTag: 1.35.4-alpine

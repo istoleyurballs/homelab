@@ -1,0 +1,29 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vaultwarden
+spec:
+  replicas: 1
+  revisionHistoryLimit: 2
+  strategy: { type: Recreate }
+
+  template:
+    spec:
+      containers:
+        - name: vaultwarden
+          image: vaultwarden
+          env:
+            - { name: DOMAIN, value: 'https://leak.mon.enorme.uk' }
+          ports:
+            - { name: http, containerPort: 80 }
+          volumeMounts:
+            - name: space
+              mountPath: /space
+          resources:
+            requests: { cpu: 10m, memory: 64Mi }
+            limits: { cpu: 1000m, memory: 256Mi }
+
+      volumes:
+        - name: space
+          persistentVolumeClaim: { claimName: vaultwarden-data-pvc }

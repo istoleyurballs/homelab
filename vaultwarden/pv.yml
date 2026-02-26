@@ -1,0 +1,28 @@
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: vaultwarden-data-pv
+spec:
+  local:
+    path: /mnt/lucastrunk/@k3s/@storage/vaultwarden-data
+  capacity: { storage: 1G }
+  accessModes: [ReadWriteOncePod]
+  storageClassName: ''
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+        - matchExpressions:
+            - key: kubernetes.io/hostname
+              operator: In
+              values: [coruscant]
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: vaultwarden-data-pvc
+spec:
+  volumeName: vaultwarden-data-pv
+  storageClassName: ''
+  accessModes: [ReadWriteOncePod]
+  resources: { requests: { storage: 1G } }
