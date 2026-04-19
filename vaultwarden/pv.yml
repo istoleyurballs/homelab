@@ -5,7 +5,7 @@ metadata:
   name: vaultwarden-data-pv
 spec:
   local:
-    path: /mnt/lucastrunk/@k3s/@storage/vaultwarden-data
+    path: /mnt/lucastrunk/@apps/@vaultwarden/data
   capacity: { storage: 1G }
   accessModes: [ReadWriteOncePod]
   storageClassName: ''

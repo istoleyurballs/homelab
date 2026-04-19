@@ -5,7 +5,7 @@ metadata:
   name: jellyfin-data-pv
 spec:
   local:
-    path: /var/lib/rancher/k3s/storage/jellyfin-data
+    path: /mnt/lucastrunk/@apps/@jellyfin/data
   capacity: { storage: 1G }
   accessModes: [ReadWriteOncePod]
   storageClassName: ''

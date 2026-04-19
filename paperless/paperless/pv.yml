@@ -5,7 +5,7 @@ metadata:
   name: paperless-data-pv
 spec:
   local:
-    path: /var/lib/rancher/k3s/storage/paperless-data
+    path: /mnt/rootfs/@apps/@paperless/data
   capacity: { storage: 5G }
   accessModes: [ReadWriteOncePod]
   storageClassName: ''
@@ -30,7 +30,7 @@ metadata:
   name: paperless-media-pv
 spec:
   local:
-    path: /mnt/lucastrunk/@k3s/@storage/paperless-media
+    path: /mnt/lucastrunk/@apps/@paperless/media
   capacity: { storage: 50G }
   accessModes: [ReadWriteOncePod]
   storageClassName: ''
@@ -55,7 +55,7 @@ metadata:
   name: paperless-trash-pv
 spec:
   local:
-    path: /mnt/lucastrunk/@k3s/@storage/paperless-trash
+    path: /mnt/lucastrunk/@apps/@paperless/trash
   capacity: { storage: 10G }
   accessModes: [ReadWriteOncePod]
   storageClassName: ''
@@ -80,7 +80,7 @@ metadata:
   name: paperless-ingest-pv
 spec:
   local:
-    path: /mnt/lucastrunk/@k3s/@storage/paperless-ingest
+    path: /mnt/lucastrunk/@apps/@paperless/ingest
   capacity: { storage: 10G }
   accessModes: [ReadWriteOncePod]
   storageClassName: ''
@@ -105,7 +105,7 @@ metadata:
   name: paperless-export-pv
 spec:
   local:
-    path: /mnt/lucastrunk/@documents/paperless-export
+    path: /mnt/lucastrunk/@apps/@paperless/export
   capacity: { storage: 10G }
   accessModes: [ReadWriteOncePod]
   storageClassName: ''

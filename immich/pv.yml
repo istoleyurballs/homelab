@@ -5,7 +5,7 @@ metadata:
   name: immich-data-pv
 spec:
   local:
-    path: /mnt/lucastrunk/@k3s/@storage/immich-data
+    path: /mnt/lucastrunk/@apps/@immich/data
   capacity: { storage: 100G }
   accessModes: [ReadWriteOncePod]
   storageClassName: ''
@@ -30,7 +30,7 @@ metadata:
   name: immich-ml-cache-pv
 spec:
   local:
-    path: /var/lib/rancher/k3s/storage/immich-ml-cache
+    path: /mnt/rootfs/@apps/@immich/ml-cache
   capacity: { storage: 10G }
   accessModes: [ReadWriteOncePod]
   storageClassName: ''
@@ -55,7 +55,7 @@ metadata:
   name: immich-db-data-pv
 spec:
   local:
-    path: /var/lib/rancher/k3s/storage/immich-db-data
+    path: /mnt/lucastrunk/@apps/@immich/db-data
   capacity: { storage: 10G }
   accessModes: [ReadWriteOncePod]
   storageClassName: ''

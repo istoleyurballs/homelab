@@ -5,7 +5,7 @@ metadata:
   name: authelia-data-pv
 spec:
   local:
-    path: /var/lib/rancher/k3s/storage/authelia-data
+    path: /mnt/rootfs/@apps/@authelia/data
   capacity: { storage: 1G }
   accessModes: [ReadWriteOncePod]
   storageClassName: ''

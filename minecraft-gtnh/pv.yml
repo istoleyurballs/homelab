@@ -5,7 +5,7 @@ metadata:
   name: minecraft-data-pv
 spec:
   local:
-    path: '/mnt/rootfs/@minecraft/gtnh-2026-data'
+    path: /mnt/rootfs/@apps/@minecraft-gtnh/data
   capacity: { storage: 20Gi }
   accessModes: [ReadWriteOncePod]
   storageClassName: ''
@@ -31,7 +31,7 @@ metadata:
   name: minecraft-backups-pv
 spec:
   local:
-    path: '/mnt/lucastrunk/@minecraft/backups/gtnh-2026'
+    path: /mnt/lucastrunk/@apps/@minecraft-gtnh/backups
   capacity: { storage: 100Gi }
   accessModes: [ReadWriteOncePod]
   storageClassName: ''

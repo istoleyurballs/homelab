@@ -5,7 +5,7 @@ metadata:
   name: prometheus-data-pv
 spec:
   local:
-    path: /var/lib/rancher/k3s/storage/prometheus-data
+    path: /mnt/rootfs/@apps/@prometheus/data
   capacity: { storage: 11G }
   accessModes: [ReadWriteOncePod]
   storageClassName: ''
