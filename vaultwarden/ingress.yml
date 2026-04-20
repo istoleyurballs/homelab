@@ -3,10 +3,6 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: vaultwarden
-  # annotations:
-  #   nginx.ingress.kubernetes.io/auth-method: 'GET'
-  #   nginx.ingress.kubernetes.io/auth-url: 'http://authelia.auth.svc.cluster.local:9091/api/authz/auth-request'
-  #   nginx.ingress.kubernetes.io/auth-signin: 'https://identifie.mon.enorme.uk?rm=$request_method'
 spec:
   ingressClassName: nginx
   rules:

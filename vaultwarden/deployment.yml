@@ -14,16 +14,24 @@ spec:
         - name: vaultwarden
           image: vaultwarden
           env:
-            - { name: DOMAIN, value: 'https://leak.mon.enorme.uk' }
+            - { name: DOMAIN, value: https://leak.mon.enorme.uk }
+            - { name: DATA_FOLDER, value: /data }
+            - { name: SIGNUPS_ALLOWED, value: 'false' }
+            - { name: SSO_ENABLED, value: 'true' }
+            - { name: SSO_ONLY, value: 'true' }
+            - { name: SSO_AUTHORITY, value: https://identifie.mon.enorme.uk }
+            - { name: SSO_SCOPES, value: openid profile email offline_access }
+            - { name: SSO_CLIENT_ID, value: vaultwarden }
+            - { name: SSO_CLIENT_SECRET, valueFrom: { secretKeyRef: { name: vaultwarden-credentials, key: SSO_CLIENT_SECRET } } }
+            - { name: SSO_ALLOW_UNKNOWN_EMAIL_VERIFICATION, value: 'true' }
           ports:
             - { name: http, containerPort: 80 }
           volumeMounts:
-            - name: space
-              mountPath: /space
+            - { name: data, mountPath: /data }
           resources:
             requests: { cpu: 10m, memory: 64Mi }
             limits: { cpu: 1000m, memory: 256Mi }
 
       volumes:
-        - name: space
+        - name: data
           persistentVolumeClaim: { claimName: vaultwarden-data-pvc }

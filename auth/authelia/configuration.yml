@@ -137,3 +137,19 @@ identity_providers:
         id_token_signed_response_alg: RS256
         userinfo_signed_response_alg: RS256
         token_endpoint_auth_method: client_secret_post
+
+      - client_id: vaultwarden
+        client_name: Vaultwarden
+        client_secret: '$argon2id$v=19$m=65536,t=3,p=4$w6QNg9h/N3P3kWnMMv22IA$qZwzfHvtLQixeRKxy5prunR8FMIIOdw6nvJx/E/4SP8'
+        public: false
+        authorization_policy: one_factor
+        consent_mode: implicit
+        require_pkce: true
+        redirect_uris:
+          - https://leak.mon.enorme.uk/identity/connect/oidc-signin
+        scopes: [openid, profile, email, offline_access]
+        response_types: [code]
+        grant_types: [authorization_code, refresh_token]
+        access_token_signed_response_alg: none
+        userinfo_signed_response_alg: none
+        token_endpoint_auth_method: client_secret_basic
