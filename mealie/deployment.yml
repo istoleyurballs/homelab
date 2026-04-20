@@ -16,7 +16,7 @@ spec:
           env:
             - { name: TZ, value: Europe/Paris }
             - { name: DB_ENGINE, value: sqlite }
-            - { name: BASE_URL, value: mange.mon.enorme.uk }
+            - { name: BASE_URL, value: https://mange.mon.enorme.uk }
             - { name: ALLOW_PASSWORD_LOGIN, value: 'false' }
 
             # OIDC auth
