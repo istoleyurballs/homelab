@@ -21,13 +21,13 @@ resources:
 images:
   - name: immich-server
     newName: ghcr.io/immich-app/immich-server
-    newTag: v2.6.3
+    newTag: v2.7.5
   - name: immich-machine-learning
     newName: ghcr.io/immich-app/immich-machine-learning
-    newTag: v2.6.3
+    newTag: v2.7.5
   - name: redis
     newName: docker.io/valkey/valkey
-    newTag: 9@sha256:3eeb09785cd61ec8e3be35f8804c8892080f3ca21934d628abc24ee4ed1698f6
+    newTag: 9@sha256:3b55fbaa0cd93cf0d9d961f405e4dfcc70efe325e2d84da207a0a8e6d8fde4f9
   - name: postgres
     newName: ghcr.io/immich-app/postgres
     newTag: 14-vectorchord0.4.3-pgvectors0.2.0@sha256:bcf63357191b76a916ae5eb93464d65c07511da41e3bf7a8416db519b40b1c23

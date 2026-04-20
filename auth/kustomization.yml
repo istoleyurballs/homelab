@@ -18,7 +18,7 @@ resources:
 images:
   - name: lldap
     newName: ghcr.io/lldap/lldap
-    newTag: 2026-01-31-alpine-rootless
+    newTag: 2026-03-04-alpine-rootless
   - name: authelia
     newName: ghcr.io/authelia/authelia
-    newTag: 4.39.15
+    newTag: 4.39.19
