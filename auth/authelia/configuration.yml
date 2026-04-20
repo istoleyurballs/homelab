@@ -142,7 +142,7 @@ identity_providers:
         client_name: Vaultwarden
         client_secret: '$argon2id$v=19$m=65536,t=3,p=4$w6QNg9h/N3P3kWnMMv22IA$qZwzfHvtLQixeRKxy5prunR8FMIIOdw6nvJx/E/4SP8'
         public: false
-        authorization_policy: one_factor
+        authorization_policy: two_factor
         consent_mode: implicit
         require_pkce: true
         redirect_uris:
