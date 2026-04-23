@@ -12,6 +12,7 @@ up:
 	kubectl apply -k auth
 	kubectl apply -k monitoring
 	kubectl apply -k mealie
+	kubectl apply -k node-feature-discovery
 	kubectl apply -k jellyfin
 	kubectl apply -k paperless
 	kubectl apply -k immich
