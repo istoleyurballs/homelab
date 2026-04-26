@@ -33,5 +33,5 @@ spec:
         - namespaceSelector: { matchLabels: { kubernetes.io/metadata.name: ingress-nginx } }
           podSelector: { matchLabels: { app.kubernetes.io/name: ingress-nginx } }
       ports: [{ port: http }]
-  # Prevent from initiating ANY connections
-  egress: []
+  # Allow all egress because of OIDC
+  egress: [{}]
