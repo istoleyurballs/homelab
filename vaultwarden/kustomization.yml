@@ -4,10 +4,6 @@ kind: Kustomization
 
 labels:
   - pairs:
-      app.kubernetes.io/name: vaultwarden
-    includeTemplates: true
-    includeSelectors: true
-  - pairs:
       app.kubernetes.io/part-of: vaultwarden
       app.kubernetes.io/managed-by: kustomize
     includeTemplates: true
@@ -15,19 +11,10 @@ labels:
 namespace: vaultwarden
 resources:
   - namespace.yml
-  - deployment.yml
-  - service.yml
-  - ingress.yml
-  - pv.yml
+  - vaultwarden
+  - networking.yml
 
 images:
   - name: vaultwarden
     newName: ghcr.io/dani-garcia/vaultwarden
     newTag: 1.35.7-alpine
-
-secretGenerator:
-  - name: vaultwarden-credentials
-    options:
-      disableNameSuffixHash: true
-    envs:
-      - vaultwarden-credentials.env
