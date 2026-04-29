@@ -18,6 +18,7 @@ up:
 	kubectl apply -k immich
 	kubectl apply -k silverbullet
 	kubectl apply -k vaultwarden
+	kubectl apply -k forgejo
 	kubectl apply -k minecraft-gtnh
 
 .PHONY: down
@@ -31,6 +32,7 @@ down-like-for-real-i-know-what-i-am-doing:
 .PHONY: down-like-for-real-i-know-what-i-am-doing-not-a-typo
 down-like-for-real-i-know-what-i-am-doing-not-a-typo:
 	kubectl delete -k minecraft-gtnh --interactive
+	kubectl delete -k forgejo --interactive
 	kubectl delete -k vaultwarden --interactive
 	kubectl delete -k silverbullet --interactive
 	kubectl delete -k immich --interactive

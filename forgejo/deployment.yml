@@ -1,0 +1,39 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: forgejo
+spec:
+  replicas: 1
+  revisionHistoryLimit: 2
+  strategy: { type: Recreate }
+
+  template:
+    spec:
+      containers:
+        - name: forgejo
+          image: forgejo
+          env:
+            - { name: USER_UID, value: '2000' }
+            - { name: USER_GID, value: '2000' }
+            - { name: FORGEJO____APP_NAME, value: Forgejojo }
+            - { name: FORGEJO____APP_SLOGAN, value: Git's Bizarre Adventures }
+            - { name: FORGEJO__SECURITY__INSTALL_LOCK, value: 'true' }
+            - { name: FORGEJO__SECURITY__GLOBAL_TWO_FACTOR_REQUIREMENT, value: all }
+            - { name: FORGEJO__OPENID__ENABLE_OPENID_SIGNIN, value: 'false' }
+            - { name: FORGEJO__OPENID__ENABLE_OPENID_SIGNUP, value: 'false' }
+            - { name: FORGEJO__OAUTH2_CLIENT__ENABLE_AUTO_REGISTRATION, value: 'true' }
+            - { name: FORGEJO__OAUTH2_CLIENT__UPDATE_AVATAR, value: 'true' }
+          ports:
+            - { name: http, containerPort: 3000 }
+            - { name: ssh, containerPort: 22 }
+          volumeMounts:
+            - name: data
+              mountPath: /data
+          resources:
+            requests: { cpu: 10m, memory: 128Mi }
+            limits: { cpu: 1000m, memory: 256Mi }
+
+      volumes:
+        - name: data
+          persistentVolumeClaim: { claimName: forgejo-data-pvc }
