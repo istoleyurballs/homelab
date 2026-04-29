@@ -28,8 +28,8 @@ down:
 down-like-for-real-i-know-what-i-am-doing:
 	@echo "Know you this will delete like everything ?"
 
-.PHONY: down-like-for-real-i-know-what-i-am-doing-not-a-type
-down-like-for-real-i-know-what-i-am-doing-not-a-type:
+.PHONY: down-like-for-real-i-know-what-i-am-doing-not-a-typo
+down-like-for-real-i-know-what-i-am-doing-not-a-typo:
 	kubectl delete -k minecraft-gtnh --interactive
 	kubectl delete -k vaultwarden --interactive
 	kubectl delete -k silverbullet --interactive
