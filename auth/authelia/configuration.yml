@@ -107,7 +107,7 @@ identity_providers:
         client_name: Paperless
         client_secret: '$argon2id$v=19$m=65536,t=3,p=4$FAugmEnwGsYSRAldgzFjcw$+Whgc9aI5Dh3uOc372/9FBZfL64VyrgY5sNX0kpHom0'
         public: false
-        authorization_policy: one_factor
+        authorization_policy: two_factor
         consent_mode: implicit
         require_pkce: true
         pkce_challenge_method: S256
@@ -124,7 +124,7 @@ identity_providers:
         client_name: Immich
         client_secret: '$argon2id$v=19$m=65536,t=3,p=4$X1VCinBMGMfETmht7sTKnw$MZa3SP0Fqf3SvU113rYpbxbpKr/bua3YqPfAzCxGGfg'
         public: false
-        authorization_policy: one_factor
+        authorization_policy: two_factor
         consent_mode: implicit
         require_pkce: false
         redirect_uris:
