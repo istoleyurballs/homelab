@@ -17,7 +17,7 @@ resources:
 images:
   - name: paperless
     newName: ghcr.io/paperless-ngx/paperless-ngx
-    newTag: 2.20.14
+    newTag: 2.20.15
   - name: redis
-    newName: docker.io/library/redis
-    newTag: 8.4.0-alpine
+    newName: docker.io/valkey/valkey
+    newTag: 9.1.0-alpine
