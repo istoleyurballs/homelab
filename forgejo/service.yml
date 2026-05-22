@@ -20,7 +20,7 @@ spec:
   type: NodePort
   ports:
     - name: ssh
-      port: 22
+      port: 30022
       protocol: TCP
       targetPort: ssh
       nodePort: 30022
