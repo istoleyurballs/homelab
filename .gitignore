@@ -2,3 +2,4 @@
 *.mkv
 *.env
 *.pem
+*.secret.txt

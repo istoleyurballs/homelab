@@ -21,11 +21,11 @@ resources:
   - pv.yml
 
 secretGenerator:
-  - name: llama-credentials
+  - name: llama-api-keys
     options:
       disableNameSuffixHash: true
-    envs:
-      - llama-credentials.env
+    files:
+      - API_KEYS=llama-api-keys.secret.txt
 
 images:
   - name: llama-server
