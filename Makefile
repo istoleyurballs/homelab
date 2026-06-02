@@ -38,6 +38,7 @@ down-like-for-real-i-know-what-i-am-doing-not-a-typo:
 	kubectl delete -k immich --interactive
 	kubectl delete -k paperless --interactive
 	kubectl delete -k jellyfin --interactive
+	kubectl delete -k node-feature-discovery
 	kubectl delete -k mealie --interactive
 	kubectl delete -k monitoring --interactive
 	kubectl delete -k auth --interactive
