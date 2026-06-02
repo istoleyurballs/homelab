@@ -1,0 +1,33 @@
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+labels:
+  - pairs:
+      app.kubernetes.io/name: llama
+    includeTemplates: true
+    includeSelectors: true
+  - pairs:
+      app.kubernetes.io/part-of: llama
+      app.kubernetes.io/managed-by: kustomize
+    includeTemplates: true
+
+namespace: llama
+resources:
+  - namespace.yml
+  - deployment.yml
+  - service.yml
+  - ingress.yml
+  - pv.yml
+
+secretGenerator:
+  - name: llama-credentials
+    options:
+      disableNameSuffixHash: true
+    envs:
+      - llama-credentials.env
+
+images:
+  - name: llama-server
+    newName: ghcr.io/ggml-org/llama.cpp
+    newTag: server-cuda13-b9445

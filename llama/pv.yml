@@ -1,0 +1,28 @@
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: llama-models-pv
+spec:
+  local:
+    path: /mnt/fastass/@models
+  capacity: { storage: 100G }
+  accessModes: [ReadWriteOncePod]
+  storageClassName: ''
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+        - matchExpressions:
+            - key: kubernetes.io/hostname
+              operator: In
+              values: [ilum]
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: llama-models-pvc
+spec:
+  volumeName: llama-models-pv
+  storageClassName: ''
+  accessModes: [ReadWriteOncePod]
+  resources: { requests: { storage: 100G } }

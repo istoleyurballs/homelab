@@ -21,6 +21,7 @@ up:
 	kubectl apply -k vaultwarden
 	kubectl apply -k forgejo
 	kubectl apply -k minecraft-gtnh
+	kubectl apply -k llama
 
 .PHONY: down
 down:
@@ -32,6 +33,7 @@ down-like-for-real-i-know-what-i-am-doing:
 
 .PHONY: down-like-for-real-i-know-what-i-am-doing-not-a-typo
 down-like-for-real-i-know-what-i-am-doing-not-a-typo:
+	kubectl delete -k llama --interactive
 	kubectl delete -k minecraft-gtnh --interactive
 	kubectl delete -k forgejo --interactive
 	kubectl delete -k vaultwarden --interactive
