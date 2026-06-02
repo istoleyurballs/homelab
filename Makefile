@@ -13,6 +13,7 @@ up:
 	kubectl apply -k monitoring
 	kubectl apply -k mealie
 	kubectl apply -k node-feature-discovery
+	kubectl apply -k nvidia-device-plugin
 	kubectl apply -k jellyfin
 	kubectl apply -k paperless
 	kubectl apply -k immich
@@ -38,6 +39,7 @@ down-like-for-real-i-know-what-i-am-doing-not-a-typo:
 	kubectl delete -k immich --interactive
 	kubectl delete -k paperless --interactive
 	kubectl delete -k jellyfin --interactive
+	kubectl delete -k nvidia-device-plugin
 	kubectl delete -k node-feature-discovery
 	kubectl delete -k mealie --interactive
 	kubectl delete -k monitoring --interactive
