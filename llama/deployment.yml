@@ -15,23 +15,27 @@ spec:
         - name: llama-server
           image: llama-server
           args:
+            - --ui
+            - --offline
             - --sleep-idle-seconds
             - '3600'
+            - --threads-http
+            - '2'
+            - --models-max
+            - '1'
+            - --parallel
+            - '-1'
+            - --cache-ram
+            - '8192'
+            - --ctx-checkpoints
+            - '5'
+            - --direct-io
+            - --models-dir
+            - /models
             - --models-preset
             - /models/llama-server-model-presets.ini
-          env:
-            - { name: LLAMA_ARG_OFFLINE, value: 'true' }
-            - { name: LLAMA_ARG_UI, value: 'true' }
-            # - { name: LLAMA_ARG_ENDPOINT_METRICS, value: 'true' }
-
-            - { name: LLAMA_ARG_MODELS_DIR, value: /models }
-
-            - { name: LLAMA_ARG_THREADS_HTTP, value: '1' }
-            - { name: LLAMA_ARG_MODELS_MAX, value: '1' }
-            - { name: LLAMA_ARG_N_PARALLEL, value: '1' }
-            - { name: LLAMA_ARG_CACHE_PROMPT, value: 'false' }
-
-            - { name: LLAMA_ARG_API_KEY_FILE, value: /var/run/secrets/enorme.uk/api-keys }
+            - --api-key-file
+            - /var/run/secrets/enorme.uk/api-keys
           ports:
             - { name: http, containerPort: 8080 }
           volumeMounts:
@@ -42,8 +46,8 @@ spec:
               mountPath: /var/run/secrets/enorme.uk
               readOnly: true
           resources:
-            requests: { cpu: 10m, memory: 128Mi, nvidia.com/gpu: 1 }
-            limits: { cpu: 2000m, memory: 10Gi, nvidia.com/gpu: 1 }
+            requests: { cpu: 10m, memory: 10Gi, nvidia.com/gpu: 1 }
+            limits: { cpu: 10000m, memory: 30Gi, nvidia.com/gpu: 1 }
 
       volumes:
         - name: models

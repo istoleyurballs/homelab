@@ -30,4 +30,4 @@ secretGenerator:
 images:
   - name: llama-server
     newName: ghcr.io/ggml-org/llama.cpp
-    newTag: server-cuda13-b9445
+    newTag: server-cuda12-b9445
