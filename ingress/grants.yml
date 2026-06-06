@@ -1,0 +1,39 @@
+---
+apiVersion: gateway.networking.k8s.io/v1beta1
+kind: ReferenceGrant
+metadata:
+  name: access-tls-from-gateway
+  namespace: cert-manager
+spec:
+  from:
+    - group: gateway.networking.k8s.io
+      kind: Gateway
+      namespace: traefik
+  to:
+    - group: ""
+      kind: Secret
+      name: mon-enorme-uk-tls
+
+---
+apiVersion: gateway.networking.k8s.io/v1beta1
+kind: ReferenceGrant
+metadata:
+  name: access-gateway-from-routes
+  namespace: traefik
+spec:
+  from:
+    - group: gateway.networking.k8s.io
+      kind: Gateway
+      namespace: traefik
+  to:
+    - { group: gateway.networking.k8s.io, kind: HTTPRoute, name: auth }
+    - { group: gateway.networking.k8s.io, kind: HTTPRoute, name: monitoring }
+    - { group: gateway.networking.k8s.io, kind: HTTPRoute, name: mealie }
+    - { group: gateway.networking.k8s.io, kind: HTTPRoute, name: monitoring }
+    - { group: gateway.networking.k8s.io, kind: HTTPRoute, name: jellyfin }
+    - { group: gateway.networking.k8s.io, kind: HTTPRoute, name: paperless }
+    - { group: gateway.networking.k8s.io, kind: HTTPRoute, name: immich }
+    - { group: gateway.networking.k8s.io, kind: HTTPRoute, name: silverbullet }
+    - { group: gateway.networking.k8s.io, kind: HTTPRoute, name: vaultwarden }
+    - { group: gateway.networking.k8s.io, kind: HTTPRoute, name: forgejo }
+    - { group: gateway.networking.k8s.io, kind: HTTPRoute, name: llama }
