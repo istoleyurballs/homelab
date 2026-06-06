@@ -1,0 +1,9 @@
+---
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: limit-body-1g
+  namespace: traefik
+spec:
+  buffering:
+    maxRequestBodyBytes: 1073741824

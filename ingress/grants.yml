@@ -26,6 +26,7 @@ spec:
       kind: Gateway
       namespace: traefik
   to:
+    - { group: gateway.networking.k8s.io, kind: HTTPRoute, name: ingress-redirects }
     - { group: gateway.networking.k8s.io, kind: HTTPRoute, name: auth }
     - { group: gateway.networking.k8s.io, kind: HTTPRoute, name: monitoring }
     - { group: gateway.networking.k8s.io, kind: HTTPRoute, name: mealie }

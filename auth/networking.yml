@@ -1,26 +1,4 @@
 --- # Authelia
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: authelia
-  annotations:
-    nginx.ingress.kubernetes.io/enable-cors: 'true'
-spec:
-  ingressClassName: nginx
-  rules:
-    - host: identifie.mon.enorme.uk
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service: { name: authelia, port: { name: http } }
-  tls:
-  # use default certificate
-    - hosts:
-        - '*.mon.enorme.uk'
-
---- # Authelia
 apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
 metadata:
@@ -48,11 +26,6 @@ spec:
         - namespaceSelector: { matchLabels: { kubernetes.io/metadata.name: monitoring } }
           podSelector: { matchLabels: { app.kubernetes.io/component: scrapper } }
       ports: [{ port: metrics }]
-    # Allow nginx to serve http ports
-    - from:
-        - namespaceSelector: { matchLabels: { kubernetes.io/metadata.name: ingress-nginx } }
-          podSelector: { matchLabels: { app.kubernetes.io/name: ingress-nginx } }
-      ports: [{ port: http }]
     # Allow traefik to serve http ports
     - from:
         - namespaceSelector: { matchLabels: { kubernetes.io/metadata.name: traefik } }

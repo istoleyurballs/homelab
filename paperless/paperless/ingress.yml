@@ -1,24 +1,4 @@
 ---
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: paperless
-spec:
-  ingressClassName: nginx
-  rules:
-  - host: essuie.mon.enorme.uk
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service: { name: paperless, port: { name: http } }
-  tls:
-  # use default certificate
-  - hosts:
-    - '*.mon.enorme.uk'
-
----
 apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
 metadata:

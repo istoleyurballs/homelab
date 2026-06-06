@@ -35,6 +35,9 @@ spec:
       websecure:
         port: 443
         nodePort: 30001
+        http:
+          middlewares:
+            - traefik-limit-body-1g@kubernetescrd
 
     gateway:
       listeners:

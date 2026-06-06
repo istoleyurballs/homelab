@@ -12,5 +12,4 @@ generatorOptions:
 
 namespace: kube-system
 resources:
-  - ingress-nginx.yml
   - cert-manager.yml
