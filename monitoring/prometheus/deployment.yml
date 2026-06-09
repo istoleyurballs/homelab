@@ -35,8 +35,8 @@ spec:
             - name: data
               mountPath: /prometheus
           resources:
-            requests: { cpu: 10m, memory: 250Mi }
-            limits: { cpu: 1000m, memory: 1Gi }
+            requests: { cpu: 10m, memory: 1Gi }
+            limits: { cpu: 1000m, memory: 2Gi }
       volumes:
         - name: config
           configMap:
