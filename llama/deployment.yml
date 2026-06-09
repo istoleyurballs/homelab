@@ -47,7 +47,7 @@ spec:
               readOnly: true
           resources:
             requests: { cpu: 10m, memory: 10Gi, nvidia.com/gpu: 1 }
-            limits: { cpu: 10000m, memory: 30Gi, nvidia.com/gpu: 1 }
+            limits: { cpu: 2000m, memory: 30Gi, nvidia.com/gpu: 1 }
 
       volumes:
         - name: models
