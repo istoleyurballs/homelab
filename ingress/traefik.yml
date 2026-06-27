@@ -57,7 +57,16 @@ spec:
               namespace: cert-manager
               name: mon-enorme-uk-tls
               group: ""
+        tls:
+          port: 443
+          protocol: TLS
+          namespacePolicy:
+            from: All
+          mode: Passthrough
 
+    # api:
+    #   insecure: true
+    #   dashboard: true
     logs:
       access:
         enabled: true
