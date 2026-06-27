@@ -13,6 +13,7 @@ resources:
   - namespace.yml
   - lldap
   - authelia
+  - kanidm
   - networking.yml
 
 images:
@@ -22,3 +23,6 @@ images:
   - name: authelia
     newName: ghcr.io/authelia/authelia
     newTag: 4.39.19
+  - name: kanidm
+    newName: docker.io/kanidm/server
+    newTag: 1.10.4

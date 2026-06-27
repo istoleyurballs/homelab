@@ -63,6 +63,7 @@ spec:
           namespacePolicy:
             from: All
           mode: Passthrough
+          hostname: identifie2.mon.enorme.uk
 
     # api:
     #   insecure: true

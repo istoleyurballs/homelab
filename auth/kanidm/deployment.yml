@@ -1,0 +1,43 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kanidm
+spec:
+  replicas: 1
+  revisionHistoryLimit: 2
+  strategy: { type: Recreate }
+
+  template:
+    spec:
+      enableServiceLinks: false
+      containers:
+        - name: kanidm
+          image: kanidm
+          env:
+            - { name: TZ, value: Europe/Paris }
+
+            - { name: KANIDM_BINDADDRESS, value: '0.0.0.0:8443' }
+            - { name: KANIDM_DOMAIN, value: identifie2.mon.enorme.uk }
+            - { name: KANIDM_ORIGIN, value: https://identifie2.mon.enorme.uk }
+
+            - { name: KANIDM_TLS_CHAIN, value: /var/run/secrets/enorme.uk/certs/tls.crt }
+            - { name: KANIDM_TLS_KEY, value: /var/run/secrets/enorme.uk/certs/tls.key }
+
+            - { name: KANIDM_DB_PATH, value: /data/kanidm.db }
+          ports:
+            - { name: https, containerPort: 8443 }
+          volumeMounts:
+            - name: data
+              mountPath: /data
+            - name: certs
+              mountPath: /var/run/secrets/enorme.uk/certs
+              readOnly: true
+          resources:
+            requests: { cpu: 10m, memory: 16Mi }
+            limits: { cpu: 1000m, memory: 128Mi }
+      volumes:
+        - name: data
+          persistentVolumeClaim: { claimName: kanidm-data-pvc }
+        - name: certs
+          secret: { secretName: identifie-mon-enorme-uk-tls }

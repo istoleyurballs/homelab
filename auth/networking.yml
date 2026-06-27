@@ -11,6 +11,19 @@ spec:
        - name: authelia
          port: 9091
 
+--- # Kanidm
+apiVersion: gateway.networking.k8s.io/v1
+kind: TLSRoute
+metadata:
+  name: kanidm
+spec:
+  parentRefs: [{ name: traefik-gateway, sectionName: tls, namespace: traefik }]
+  hostnames: [identifie2.mon.enorme.uk]
+  rules:
+    - backendRefs:
+        - name: kanidm
+          port: 8443
+
 --- # Policies
 apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
@@ -30,7 +43,7 @@ spec:
     - from:
         - namespaceSelector: { matchLabels: { kubernetes.io/metadata.name: traefik } }
           podSelector: { matchLabels: { app.kubernetes.io/name: traefik } }
-      ports: [{ port: http }]
+      ports: [{ port: http }, { port: https }]
   egress:
     # Allow DNS
     - to:

@@ -28,6 +28,7 @@ spec:
   to:
     - { group: gateway.networking.k8s.io, kind: HTTPRoute, name: ingress-redirects }
     - { group: gateway.networking.k8s.io, kind: HTTPRoute, name: auth }
+    - { group: gateway.networking.k8s.io, kind: TLSRoute, name: auth }
     - { group: gateway.networking.k8s.io, kind: HTTPRoute, name: monitoring }
     - { group: gateway.networking.k8s.io, kind: HTTPRoute, name: mealie }
     - { group: gateway.networking.k8s.io, kind: HTTPRoute, name: monitoring }
@@ -38,3 +39,4 @@ spec:
     - { group: gateway.networking.k8s.io, kind: HTTPRoute, name: vaultwarden }
     - { group: gateway.networking.k8s.io, kind: HTTPRoute, name: forgejo }
     - { group: gateway.networking.k8s.io, kind: HTTPRoute, name: llama }
+
