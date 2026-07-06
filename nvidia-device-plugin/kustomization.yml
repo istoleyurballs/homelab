@@ -11,6 +11,6 @@ labels:
 namespace: nvidia-device-plugin
 resources:
   - namespace.yml
-  - https://raw.githubusercontent.com/NVIDIA/k8s-device-plugin/refs/tags/v0.19.2/deployments/static/nvidia-device-plugin.yml
+  - https://raw.githubusercontent.com/NVIDIA/k8s-device-plugin/refs/tags/v0.19.3/deployments/static/nvidia-device-plugin.yml
 patches:
   - path: restrict-ilum.yml

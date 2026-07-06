@@ -19,10 +19,10 @@ resources:
 images:
   - name: lldap
     newName: ghcr.io/lldap/lldap
-    newTag: 2026-05-05-alpine-rootless
+    newTag: 2026-05-26-alpine-rootless
   - name: authelia
     newName: ghcr.io/authelia/authelia
-    newTag: 4.39.19
+    newTag: 4.39.20
   - name: kanidm
     newName: docker.io/kanidm/server
     newTag: 1.10.4
