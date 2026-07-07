@@ -24,7 +24,7 @@ images:
     newTag: v3.0.1
   - name: immich-machine-learning
     newName: ghcr.io/immich-app/immich-machine-learning
-    newTag: v3.0.1
+    newTag: v3.0.1-openvino
   - name: redis
     newName: docker.io/valkey/valkey
     newTag: 9@sha256:4963247afc4cd33c7d3b2d2816b9f7f8eeebab148d29056c2ca4d7cbc966f2d9

@@ -89,7 +89,7 @@
       "concurrency": 2
     },
     "faceDetection": {
-      "concurrency": 2
+      "concurrency": 8
     },
     "integrityCheck": {
       "concurrency": 1
@@ -107,10 +107,10 @@
       "concurrency": 5
     },
     "ocr": {
-      "concurrency": 1
+      "concurrency": 8
     },
     "search": {
-      "concurrency": 5
+      "concurrency": 8
     },
     "sidecar": {
       "concurrency": 5
