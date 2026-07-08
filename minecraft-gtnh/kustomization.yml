@@ -22,10 +22,11 @@ resources:
 configMapGenerator:
   - name: minecraft-gtnh-cm
     files:
-      - whitelist.json=data/whitelist.json
-      - ops.json=data/ops.json
+      - whitelist.json=whitelist.json
+      - ops.json=ops.json
+      - server-icon.png=server-icon.png
 
 images:
   - name: minecraft-gtnh
     newName: ghcr.io/istoleyurballs/minecraft-gtnh
-    newTag: 2.8.4-java25-rev11
+    newTag: 2.9.0-beta-2-java25-rev2

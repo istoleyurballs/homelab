@@ -4,7 +4,7 @@ kind: Deployment
 metadata:
   name: minecraft-gtnh
 spec:
-  replicas: 0
+  replicas: 1
   revisionHistoryLimit: 2
   strategy: { type: Recreate }
 
@@ -19,26 +19,24 @@ spec:
             - { name: EULA, value: 'true' }
             - { name: DIFFICULTY, value: '2' }
             - { name: VIEW_DISTANCE, value: '32' }
-            - { name: MOTD, value: 'Autism land' }
+            - { name: MOTD, value: '-==XXX==- NO GIRLS ALLOWED -==XXX==-' }
             - { name: MAX_TICK_TIME, value: '-1' }
+            # - { name: EXTRA_JAVA_ARGS, value: '-Dfml.queryResult=confirm' }
           ports:
             - { name: minecraft, containerPort: 25565 }
           volumeMounts:
+            - { name: config, mountPath: /minecraft/whitelist.json, subPath: whitelist.json, readOnly: true }
+            - { name: config, mountPath: /minecraft/ops.json, subPath: ops.json, readOnly: true }
+            - { name: config, mountPath: /minecraft/server-icon.png, subPath: server-icon.png, readOnly: true }
             - { name: data, mountPath: /minecraft/World, subPath: World }
             - { name: data, mountPath: /minecraft/config/JourneyMapServer, subPath: JourneyMapServer }
             - { name: data, mountPath: /minecraft/logs, subPath: logs }
             - { name: backups, mountPath: /minecraft/backups }
-            - { name: provision-players, mountPath: /minecraft/whitelist.json, subPath: whitelist.json, readOnly: true }
-            - { name: provision-players, mountPath: /minecraft/ops.json, subPath: ops.json, readOnly: true }
           resources:
             requests: { cpu: 1000m, memory: 4Gi }
             limits: { cpu: 7000m, memory: 11Gi }
 
       volumes:
-        - name: data
-          persistentVolumeClaim: { claimName: minecraft-data-pvc }
-        - name: backups
-          persistentVolumeClaim: { claimName: minecraft-backups-pvc }
-        - name: provision-players
-          configMap:
-            name: minecraft-gtnh-cm
+        - { name: config, configMap: { name: minecraft-gtnh-cm } }
+        - { name: data, persistentVolumeClaim: { claimName: minecraft-data-pvc } }
+        - { name: backups, persistentVolumeClaim: { claimName: minecraft-backups-pvc } }
