@@ -298,7 +298,7 @@ def parse-codec []: string -> string {
         | get -o 0.codec_name
     }
     | default ''
-    | str upcase
+    | str uppercase
     | str replace --regex '[HX]\.?264' 'AVC'
     | str replace --regex '[HX]\.?265' 'HEVC'
 }
@@ -306,7 +306,7 @@ def parse-codec []: string -> string {
 def parse-ext []: string -> string {
   parse --regex '(?i)\.(?<ext>[a-zA-Z0-9]+)$'
     | get 0.ext
-    | str downcase
+    | str lowercase
 }
 
 def parse-ep [season: int, --offset-ep: int = 0]: string -> string {
