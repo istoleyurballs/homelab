@@ -1,0 +1,47 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: minecraft-rm7
+spec:
+  replicas: 1
+  revisionHistoryLimit: 2
+  strategy: { type: Recreate }
+
+  template:
+    spec:
+      containers:
+        - name: minecraft
+          image: itzg/minecraft
+          env:
+            - { name: TZ, value: Europe/Paris }
+            - { name: INIT_MEMORY, value: 4G }
+            - { name: MAX_MEMORY, value: 10G }
+
+            - { name: EULA, value: 'true' }
+            - { name: ENABLE_WHITELIST, value: 'true' }
+            - { name: MODE, value: survival }
+            - { name: MOTD, value: En train de me mod le ragna }
+            - { name: DIFFICULTY, value: normal }
+            - { name: VIEW_DISTANCE, value: '32' }
+            - { name: MAX_TICK_TIME, value: '-1' }
+            - { name: ENABLE_QUERY, value: 'true' }
+
+            - { name: ENABLE_AUTOPAUSE, value: 'true' }
+            - { name: AUTOPAUSE_TIMEOUT_EST, value: '3600' }
+            - { name: AUTOPAUSE_TIMEOUT_INIT, value: '600' }
+
+            - { name: TYPE, value: FORGE }
+            - { name: VERSION, value: '1.18.2' }
+            - { name: FORGEVERSION, value: '40.3.11' }
+          ports:
+            - { name: minecraft, protocol: TCP, containerPort: 25565 }
+            - { name: minecraft-query, protocol: UDP, containerPort: 25565 }
+          volumeMounts:
+            - { name: data, mountPath: /data }
+          resources:
+            requests: { cpu: 1000m, memory: 4Gi }
+            limits: { cpu: 5000m, memory: 15Gi }
+
+      volumes:
+        - { name: data, persistentVolumeClaim: { claimName: minecraft-data-pvc } }
