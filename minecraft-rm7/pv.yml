@@ -23,3 +23,29 @@ spec:
   storageClassName: ''
   accessModes: [ReadWriteOncePod]
   resources: { requests: { storage: 20Gi } }
+
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: minecraft-rm7-backups-pv
+spec:
+  local:
+    path: /mnt/lucastrunk/@apps/@minecraft-rm7/backups
+  capacity: { storage: 100Gi }
+  accessModes: [ReadWriteOncePod]
+  storageClassName: ''
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+        - matchExpressions: [{ key: kubernetes.io/hostname, operator: In, values: [coruscant] }]
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: minecraft-rm7-backups-pvc
+spec:
+  volumeName: minecraft-rm7-backups-pv
+  storageClassName: ''
+  accessModes: [ReadWriteOncePod]
+  resources: { requests: { storage: 100Gi } }
