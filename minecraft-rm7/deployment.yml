@@ -17,6 +17,7 @@ spec:
             - { name: TZ, value: Europe/Paris }
             - { name: INIT_MEMORY, value: 4G }
             - { name: MAX_MEMORY, value: 10G }
+            - { name: USE_MEOWICE_FLAGS, value: 'true' }
 
             - { name: EULA, value: 'true' }
             - { name: ENABLE_WHITELIST, value: 'true' }
