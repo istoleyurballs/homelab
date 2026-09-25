@@ -5,7 +5,7 @@ metadata:
   name: minecraft-rm7-data-pv
 spec:
   local:
-    path: /mnt/rootfs/@apps/@minecraft-rm7/data
+    path: /mnt/fastfs/apps/minecraft-rm7/data
   capacity: { storage: 20Gi }
   accessModes: [ReadWriteOncePod]
   storageClassName: ''
